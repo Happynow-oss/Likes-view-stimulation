@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Like and View Simulation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .counter {
+            font-size: 2em;
+            margin: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Simulate Views and Likes</h1>
+    <div class="counter">
+        <p>Views: <span id="viewCount">0</span></p>
+        <p>Likes: <span id="likeCount">0</span></p>
+    </div>
+
+    <button onclick="addView()">Generate View</button>
+    <button onclick="addLike()">Generate Like</button>
+
+    <script>
+        let views = 0;
+        let likes = 0;
+
+        function addView() {
+            views++;
+            document.getElementById('viewCount').innerText = views;
+        }
+
+        function addLike() {
+            likes++;
+            document.getElementById('likeCount').innerText = likes;
+        }
+
+        function simulateAutoLikeAndView() {
+            const sixDays = 6 * 24 * 60 * 60 * 1000;
+            let interval = setInterval(() => {
+                addView();
+                if (Math.random() > 0.5) {
+                    addLike();
+                }
+            }, 1000);
+
+            setTimeout(() => {
+                clearInterval(interval);
+                alert("Simulation ended after 6 days");
+            }, sixDays);
+        }
+
+        window.onload = function() {
+            simulateAutoLikeAndView();
+        };
+    </script>
+    
+</body>
+</html>
